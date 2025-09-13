@@ -1,6 +1,8 @@
 import os
 import sys
 import subprocess
+from google.genai import types
+
 def run_python_file(working_directory, file_path, args=[]):
     wd_abs = os.path.abspath(working_directory)
     target_abs = os.path.abspath(os.path.join(wd_abs, file_path))
@@ -35,3 +37,23 @@ def run_python_file(working_directory, file_path, args=[]):
     if completed.returncode != 0:
         lines.append(f"Process exited with code {completed.returncode}")
     return "\n".join(lines)
+
+schema_run_python_file = types.FunctionDeclaration(
+    name="run_python_file",
+    description="Executes a Python file with optional CLI-style string arguments.",
+    parameters=types.Schema(
+        type=types.Type.OBJECT,
+        properties={
+            "file_path": types.Schema(
+                type=types.Type.STRING,
+                description="Path to the Python file to execute, relative to the working directory.",
+            ),
+            "args": types.Schema(
+                type=types.Type.ARRAY,
+                description="Optional list of string arguments to pass to the script.",
+                items=types.Schema(type=types.Type.STRING),
+            ),
+        },
+        required=["file_path"],
+    ),
+)
