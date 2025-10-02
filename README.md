@@ -1,29 +1,28 @@
 # AI AGENT
-A brief description of what this agent does, the problems it solves, and how it works at a high level.
+Short description of what your agent does and the problems it solves.
 
 ## Features
-- Summarize key capabilities
 - Bug fixing / refactoring / feature additions
-- Tool usage (filesystem, code execution, etc.)
-- Model/provider support
-
-## Demo
-- Screenshots or terminal GIFs (optional)
+- File inspection and edits
+- Run Python files and report results
+- Configurable model/provider
 
 ## Architecture
 - Language: Python 3.11+
-- Key libs: openai/google-generativeai/anthropic, pydantic, typer, etc.
+- Key libs: pydantic, typer (adjust as needed)
 - Structure:
-  - `src/` – core agent logic
-  - `tools/` – function-calling tools
-  - `configs/` – model and runtime configs
-  - `tests/` – unit/integration tests
-  - `main.py` – entry point
-
-## Getting Started
-
-### Prerequisites
-- Python 3.11+
-- pip or uv/poetry
-- API keys:
-  - `OPENAI_API_KEY` or `GOOGLE_API_KEY` or `ANTHROPIC_API_KEY`
+  - `main.py` – CLI/entry point
+  - `config.py` – configuration and environment
+  - `functions/` – tool functions
+    - `call_function.py`
+    - `get_file_content.py`
+    - `get_files_info.py`
+    - `run_python_file.py`
+    - `write_file.py`
+  - `calculator/`
+    - `README.md`, `lorem.txt`, `main.py`, `tests.py`
+    - `pkg/`
+      - `calculator.py`, `morelorem.txt`, `render.py`
+  - `tests.py` – root tests (if separate from calculator/tests.py)
+  - `pyproject.toml`, `uv.lock`
+  - `.python-version`, `.gitignore`, `README.md`
